@@ -1,0 +1,472 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map restaurant</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+ integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+ crossorigin="" />
+ 
+ <!-- W3 CSS template -->
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+ 
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+ <style>
+ #mapid {
+ height: 1000px;
+ }
+ </style>
+</head>
+<body>
+      <div class="w3-row">
+        <div id="mapid" class="w3-half"></div>
+        <div id="content" class="w3-half">
+        <table class="w3-table w3-striped">
+        <tr>
+        <th>ชื่อร้านอาหาร</th>
+        <th>คะแนนความนิยม</th>
+        </tr>
+        <tr>
+        <td>น้ำตก A</td>
+        <td>A</td>
+        </tr>
+        </table>
+        </div>
+        </div>
+
+<script>
+    var map = L.map("mapid").setView([13.77917408850621, 100.57624166470067], 15);
+    var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    var gsat = L.tileLayer("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}").addTo(map);
+    var OpenStreetMap_DE = L.tileLayer("https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png").addTo(map);
+    var baseMaps = {
+ OSM: osm,
+ GoogleSat: gsat,
+ OSM_DE:OpenStreetMap_DE,
+ };
+//add data
+    var tourpoint = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "หมูจุ่มหมูกระทะคุณเปิ้ล"
+      },
+      "geometry": {
+        "coordinates": [
+          100.58165304559031,
+          13.782395222645846
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ใบบัว - อาหารเชียงตุง"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57890466660297,
+          13.778840277084853
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ขาหมู เหม่งจ๋าย"
+      },
+      "geometry": {
+        "coordinates": [
+          100.58927636906094,
+          13.769328771872495
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ก๋วยเตี๋ยวเนื้อนายซ้งรสเยี่ยม"
+      },
+      "geometry": {
+        "coordinates": [
+          100.71854003283119,
+          13.818186178338976
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "กวง ซีฟู้ดทะเลเผา"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57348006172288,
+          13.77274028471787
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ก๋วยเตี๋ยวไก่ลุงเลื่อน"
+      },
+      "geometry": {
+        "coordinates": [
+          100.5763607177908,
+          13.77974766285081
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "สมยงตำซั่ว"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57329978008829,
+          13.755165754754728
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ห้องอาหารจีนหล่งฟ่ง"
+      },
+      "geometry": {
+        "coordinates": [
+          100.5790148321243,
+          13.776782702431902
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ภัตตาคารเฉาซียง"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57415933510259,
+          13.7969089627547
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hao Chi หม้อไฟปิ้งย่าง หม่าล่า ต้นตำรับ"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57273132156956,
+          13.761716868661622
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "เซียงหม่าน หม้อไฟฉงซิ่ง"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57864716117894,
+          13.777400929902214
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CQK หม่าล่า"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57398717979913,
+          13.767825000876854
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "สุกี้ดารา"
+      },
+      "geometry": {
+        "coordinates": [
+          100.5821697380004,
+          13.78176738192441
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "สุกี้จินดา"
+      },
+      "geometry": {
+        "coordinates": [
+          100.578700197856,
+          13.777828929965978
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HALO Koffee"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57479321109662,
+          13.788461969957424
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grow tea.studio"
+      },
+      "geometry": {
+        "coordinates": [
+          100.5749894520394,
+          13.788385508313027
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mindscape Café by Bottomless"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57620855667989,
+          13.777382668250894
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mitta X Sabaijai"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57947151617935,
+          13.794064123502963
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Poonypoonycoffee"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57655511319945,
+          13.79184055915232
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sir.homecafe"
+      },
+      "geometry": {
+        "coordinates": [
+          100.58428177908019,
+          13.782237702100844
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pressed café"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57007548194031,
+          13.756485745921566
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chill chill Restaurant"
+      },
+      "geometry": {
+        "coordinates": [
+          100.58608409321829,
+          13.769779348861093
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Belong bar & Bistro"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57391397401426,
+          13.78081949766731
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Astro9 Skybar"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57627804512703,
+          13.778858754991973
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ROUTE66"
+      },
+      "geometry": {
+        "coordinates": [
+          100.57537812731232,
+          13.751496227739622
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "โอลด์-เล้ง"
+      },
+      "geometry": {
+        "coordinates": [
+          100.5765996544859,
+          13.749964616751157
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maldives Bar Mengjai"
+      },
+      "geometry": {
+        "coordinates": [
+          100.58663983992432,
+          13.77236865315848
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Snop Club"
+      },
+      "geometry": {
+        "coordinates": [
+          100.56745241686565,
+          13.761620934315545
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}
+
+  //interaction by mouseover
+  var tourLayer = L.geoJSON(tourpoint, {
+ pointToLayer: function (feature, latlng) {
+ return L.marker(latlng).bindPopup(feature.properties.name);
+ },
+ onEachFeature: function (feature, layer) {
+ layer.on("mouseover", function () {
+ document
+ .getElementById(feature.properties.name)
+ .classList.add("w3-red");
+ });
+ 
+ layer.on("mouseout", function () {
+ document
+ .getElementById(feature.properties.name)
+ .classList.remove("w3-red");
+ });
+ },
+ }).addTo(map);
+ 
+ var cont = "";
+ cont += "<table class='w3-table w3-striped'>";
+ cont += "<tr>";
+ cont += "<th>ชื่อร้านอาหาร</th>";
+ cont += "</tr>";
+ for (let i in tourpoint.features) {
+ cont += "<tr id=" + tourpoint.features[i].properties.name + ">";
+ cont += "<td>" + tourpoint.features[i].properties.name + "</td>";
+ cont += "</tr>";
+ }
+ cont += "</table>";
+ console.log(cont);
+ document.getElementById("content").innerHTML = cont;
+
+ var overlays = {สถานที่ท่องเที่ยว: tourLayer};
+ //add leyer control
+ L.control.layers(baseMaps, overlays).addTo(map);
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
